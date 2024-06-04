@@ -17,6 +17,7 @@ import ThemeDropdown from "./ThemeDropdown";
 import LanguagesDropdown from "./LanguagesDropdown";
 import { auth, db } from "./Firebase";
 import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+import { Link } from "react-router-dom";
 
 const javascriptDefault = `/**
 * Problem: Binary Search: Search a sorted array for a target value.
@@ -256,7 +257,7 @@ const Landing = () => {
         <div className="px-4 py-2">
           <ThemeDropdown handleThemeChange={handleThemeChange} theme={theme} />
         </div>
-        <div><button className="px-4 btn btn-primary mt-2 shadow-lg h-17" onClick={()=>window.location.href="/profile"}>Click to view profile</button></div>
+        <div><Link to='/profile'><button className="px-4 btn btn-primary mt-2 shadow-lg h-17">Click to view profile</button></Link></div>
       </div>
       <div className="flex flex-row space-x-4 items-start px-4 py-4">
         <div className="flex flex-col w-full h-full justify-start items-end">

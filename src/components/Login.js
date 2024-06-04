@@ -18,18 +18,18 @@ function Login() {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       console.log("User logged in Successfully");
-      alert("User logged in Successfully");
+      // alert("User logged in Successfully");
       toast.success("User logged in Successfully", {
-        position: "top-center",
+        position: "top-right",
         
       });
       localStorage.setItem("loggedin",true)
       navigate('/profile')
     } catch (error) {
       console.log(error.message);
-      alert(error.code);
-      toast.error(error.message, {
-        position: "bottom-center",
+      // alert(error.code);
+      toast.error(error.code, {
+        position: "top-right",
       });
     }
   };

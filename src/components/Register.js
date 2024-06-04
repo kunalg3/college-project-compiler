@@ -24,16 +24,16 @@ function Register() {
         firstName: fname,
         lastName: lname
       });
-      
+
       console.log("User Registered Successfully!!");
-      alert("User Registered Successfully!!");
+      // alert("User Registered Successfully!!");
       toast.success("User Registered Successfully!!", {
-        position: "top-center",      });
+        position: "top-right",      });
     } catch (error) {
       console.log(error.message);
-      alert(error.message)
+      // alert(error.message)
       toast.error(error.message, {
-        position: "bottom-center",
+        position: "top-right",
       });
     }
   };
