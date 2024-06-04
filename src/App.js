@@ -9,28 +9,34 @@ import Profile from './components/Profile'
 import { auth } from "./components/Firebase";
 import { useEffect,useState } from "react";
 import HomePage from "./pages/HomePage";
+import ProtectedRoute from "./services/ProtectedRoute";
 
 function App() {
-  const [user, setUser] = useState();
-  useEffect(() => {
-    auth.onAuthStateChanged((user) => {
-      setUser(user);
-      console.log(user)
-    });
-  });
+  // const [user, setUser] = useState();
+  // useEffect(() => {
+  //   auth.onAuthStateChanged((user) => {
+  //     setUser(user);
+  //     // console.log(user)
+  //   });
+  // });
   return (
     <BrowserRouter>
     <Routes>
-      {/* <Route path="/" element={<LandingPage/>}></Route> */}
-      <Route
+      {/* <Route
                 path="/"
                 element={user ? <Navigate to="/profile" /> : <LoginPage />}
-        />
-      <Route path="/register" element={<RegisterPage/>}></Route>
-      <Route path="/login" element={<LoginPage/>}></Route>
-      <Route path="/profile" element={<Profile />} />
-      <Route path="/compiler" element={<LandingPage/>}/>
-      <Route path="/home" element={<HomePage/>}/>
+        /> */}
+      
+      <Route path="/register" element={<RegisterPage/>}/>
+      <Route path="/login" element={<LoginPage/>}/>
+      <Route path="/" element={<HomePage/>}/>
+      
+      <Route path="/profile" element={<ProtectedRoute/>} >
+        <Route path="/profile" element={<Profile />} />
+      </Route>
+      <Route path="/compiler" element={<ProtectedRoute/>}>
+        <Route path="/compiler" element={<LandingPage/>}/>
+      </Route>
     </Routes>
     </BrowserRouter>
   );

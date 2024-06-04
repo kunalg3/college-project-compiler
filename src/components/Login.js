@@ -4,11 +4,13 @@ import { auth } from "./Firebase";
 import { toast } from "react-toastify";
 import styles from './Login.module.css'
 import avatar from '../assets/profile.png'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigate=useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,12 +19,12 @@ function Login() {
       await signInWithEmailAndPassword(auth, email, password);
       console.log("User logged in Successfully");
       alert("User logged in Successfully");
-      window.location.href = "/profile";
       toast.success("User logged in Successfully", {
         position: "top-center",
         
       });
       localStorage.setItem("loggedin",true)
+      navigate('/profile')
     } catch (error) {
       console.log(error.message);
       alert(error.code);

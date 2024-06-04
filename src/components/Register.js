@@ -15,23 +15,23 @@ function Register() {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      const user = auth.currentUser;
+      const usercredentials = await createUserWithEmailAndPassword(auth, email, password);
+      const user = usercredentials.user;
       console.log(user);
-      if (user) {
-        await setDoc(doc(db, "Users", user.uid), {
-          email: user.email,
-          firstName: fname,
-          lastName: lname
-        });
-      }
+
+      await setDoc(doc(db, "Users", user.uid), {
+        email: user.email,
+        firstName: fname,
+        lastName: lname
+      });
+      
       console.log("User Registered Successfully!!");
       alert("User Registered Successfully!!");
       toast.success("User Registered Successfully!!", {
         position: "top-center",      });
     } catch (error) {
       console.log(error.message);
-      alert(error.code)
+      alert(error.message)
       toast.error(error.message, {
         position: "bottom-center",
       });
