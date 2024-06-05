@@ -4,7 +4,7 @@ import { auth, db } from "./Firebase";
 import { setDoc, doc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 import { toast } from "react-toastify";
 import styles from './Register.module.css';
-import {Link } from 'react-router-dom'
+import {Link, useNavigate } from 'react-router-dom'
 
 function Register() {
   const [email, setEmail] = useState("");
@@ -12,6 +12,7 @@ function Register() {
   const [fname, setFname] = useState("");
   const [lname, setLname] = useState("");
 
+  const navigate=useNavigate()
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
@@ -27,6 +28,7 @@ function Register() {
 
       console.log("User Registered Successfully!!");
       // alert("User Registered Successfully!!");
+      navigate('/login')
       toast.success("User Registered Successfully!!", {
         position: "top-right",      });
     } catch (error) {
